@@ -46,6 +46,15 @@ Then, in a different terminal
 flask run
 ```
 
+And of course, you can visualize any arbitrary csvs. By editing app.py
+```
+PATH_TO_LOGS="./path_to_csv_folder/"
+PROJECT_NAME="csv_file_name"
+```
+```
+flask run
+```
+
 The flask server at 5000 will then plot your results in real time
 
 
