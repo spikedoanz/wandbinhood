@@ -2,7 +2,7 @@
 
 ![Example Image](./assets/example.png)
 
-For the intersection of gambling, deep learning, and unix ricing (wip)
+For the intersection of gambling, deep learning, and unix ricing
 
 ## Example Usage ##
 
