@@ -45,8 +45,19 @@ Then, in a different terminal
 flask run
 ```
 
-
 The flask server at 5000 will then plot your results in real time
+
+
+## How it works ##
+
+Basically, these two functions post to projects/project_name.csv
+
+```
+create_project(project_name, [fields,that,you,want,to,track])
+append_project(project_name, [numbers,for,those,fields])
+```
+
+The flaak server reads from projects/project_name.csv, and makes a plot for each column in that csv
 
 ## Notes ##
 
