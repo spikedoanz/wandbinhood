@@ -1,25 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Plot Example</title>
-</head>
-<body>
-    <h2>Plot Example</h2>
-    <img id="plot" src="" alt="Plot">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        function updatePlot() {
-            fetch('/data')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('plot').src = 'data:image/png;base64,' + data.plot_data;
-                })
-                .catch(error => console.error('Error:', error));
+        function fetchData() {
+            $.getJSON('/data', function(data) {
+                var projectName = data.project_name;
+                var plotDataList = data.plot_data_list;
+
+                // Update the project name in the heading
+                $('#project-name').text(projectName);
+
+                // Clear the existing plot container
+                var plotContainer = $('#plot-container');
+                plotContainer.empty();
+
+                // Create a container for each plot
+                plotDataList.forEach(function(plotData) {
+                    var column = plotData.column;
+                    var plotDataBase64 = plotData.plot_data;
+
+                    var plotElement = $('<div>').addClass('plot');
+                    var plotImage = $('<img>').attr('src', 'data:image/png;base64,' + plotDataBase64);
+                    var plotCaption = $('<p>').text(column);
+
+                    plotElement.append(plotImage);
+                    //plotElement.append(plotCaption);
+                    plotContainer.append(plotElement);
+                });
+            });
         }
 
-        // Call updatePlot() initially and then every 5 seconds
-        updatePlot();
-        setInterval(updatePlot, 500);
+        $(document).ready(function() {
+            // Fetch data initially
+            fetchData();
+
+            // Fetch data every 5 seconds
+            setInterval(fetchData, 5000);
+        });
     </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+        }
+        #plot-container {
+            color: white ;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .plot {
+            margin: 20px;
+            text-align: center;
+        }
+        .plot img {
+            max-width: 400px;
+            height: auto;
+        }
+        .plot p {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="plot-container"></div>
 </body>
 </html>
