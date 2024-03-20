@@ -11,6 +11,8 @@ To run the example plot:
 ```
 git clone https://github.com/spikedoanz/wandbinhood/
 cd wandbinhood
+python3 -m venv venv
+soource venv/bin/activate
 pip install -r requirements.txt
 flask run
 ```
@@ -30,6 +32,19 @@ for epoch in epochs:
     # accuracy = something else
     apppend_project(project_name, [loss, accuracy])
 ```
+
+Or to run the example training job with live updates
+
+```
+pip install -r requirements_training.txt
+python example_project.py
+```
+
+Then, in a different terminal
+```
+flask run
+```
+
 
 The flask server at 5000 will then plot your results in real time
 
