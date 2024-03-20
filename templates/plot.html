@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plot Example</title>
+</head>
+<body>
+    <h2>Plot Example</h2>
+    <img id="plot" src="" alt="Plot">
+
+    <script>
+        function updatePlot() {
+            fetch('/data')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('plot').src = 'data:image/png;base64,' + data.plot_data;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Call updatePlot() initially and then every 5 seconds
+        updatePlot();
+        setInterval(updatePlot, 500);
+    </script>
+</body>
+</html>
