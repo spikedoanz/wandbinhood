@@ -1,6 +1,10 @@
 # Wandbinhood #
 
-For the intersection of gambling, deep learning, and unix ricing
+Simple plotting the gamblers, ml researchers, and unix ricers
+
+Simple interface to push to a csv file, and another simple interface to do live updates on that single file
+
+It's < 100 lines of code, go wild!
 
 ![Example Image](./assets/example.png)
 
